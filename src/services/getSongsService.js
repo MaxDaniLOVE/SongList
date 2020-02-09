@@ -12,6 +12,12 @@ export default class getSongsService{
       song: 'Falling Away from Me',
       genre: 'nu-metal',
       year: 1999},
+    {
+      id: 3,
+      singer: 'Slipknot',
+      song: '(SIC)',
+      genre: 'nu-metal',
+      year: 1999},
   ];
 
   getChart = () => {
