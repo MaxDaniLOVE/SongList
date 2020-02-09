@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import List from '../List';
+import Controlers from '../Controlers';
 import getSongsService from '../../services/getSongsService';
 
 
@@ -8,7 +9,10 @@ export default class App extends Component {
     super(props);
     this.getSongsService = new getSongsService();
     this.state = {
-      songList: []
+      songList: [],
+      artists: [],
+      genres: [],
+      years: [],
     }
   }
 
@@ -28,10 +32,11 @@ export default class App extends Component {
   }
 
   render() {
-    const { songList } = this.state;
+    const { songList, artists, genres, years } = this.state;
     return (
       <div className="container">
         <List songList={songList}/>
+        <Controlers artists={artists} genres={genres} years={years}/>
       </div>
       
     );
