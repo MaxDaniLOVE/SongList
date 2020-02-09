@@ -8,15 +8,15 @@ export default class App extends Component {
     super(props);
     this.getSongsService = new getSongsService();
     this.state = {
-      songList: {}
+      songList: []
     }
   }
 
   componentDidMount() {
     this.getSongsService.getChart()
-      .then((response) => {
+      .then((songList) => {
         this.setState({
-          songList: response
+          songList,
         })
       });
   }
