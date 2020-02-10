@@ -1,7 +1,7 @@
 import React from 'react';
 import './Footer.scss';
 
-const Footer = ({displayedPages, activePage, onDisplayedItemsChange, displayedItems}) => {
+const Footer = ({displayedPages, activePage, onActivePageChange, displayedItems, onDisplayedItemsChange}) => {
   const availableItemsAmount = [5, 10, 25, 50, 100];
   let items = [];
   for (let index = 1; index <= displayedPages; index++) {
@@ -10,7 +10,7 @@ const Footer = ({displayedPages, activePage, onDisplayedItemsChange, displayedIt
   const pages = items.map((element) => {
     const newClassName = element === activePage ? 'page-item active' : 'page-item'
     return (
-      <li key={element} className={newClassName} onClick={() => onDisplayedItemsChange(element)}>
+      <li key={element} className={newClassName} onClick={() => onActivePageChange(element)}>
         <span className="page-link">{element}</span>
       </li>
     )
@@ -18,7 +18,7 @@ const Footer = ({displayedPages, activePage, onDisplayedItemsChange, displayedIt
   const itemsAmount = availableItemsAmount.map((element) => {
     const newClassName = element === displayedItems ? 'page-item active' : 'page-item'
     return (
-      <li key={element} className={newClassName} onClick={() => console.log('test')}>
+      <li key={element} className={newClassName} onClick={() => onDisplayedItemsChange(element)}>
         <span className="page-link">{element}</span>
       </li>
     )

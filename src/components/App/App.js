@@ -57,9 +57,15 @@ export default class App extends Component {
     })
   }
 
-  onDisplayedItemsChange = (amount) => {
+  onActivePageChange = (activePage) => {
     this.setState({
-      activePage: amount
+      activePage,
+    })
+  }
+
+  onDisplayedItemsChange = (displayedItems) => {
+    this.setState({
+      displayedItems,
     })
   }
 
@@ -95,8 +101,8 @@ export default class App extends Component {
           displayedPages={pagesAmount}
           activePage={activePage}
           displayedItems={displayedItems}
+          onActivePageChange={this.onActivePageChange}
           onDisplayedItemsChange={this.onDisplayedItemsChange}
-
         />
       </div>
     );
