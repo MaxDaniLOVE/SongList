@@ -39,7 +39,7 @@ export default class Controlers extends Component {
     const genresList = genreFilter.map(({genre, value}) => <option key={value}>{genre}</option>)
     const yearsList = yearsFilter.map(({year, value}) => <option key={value}>{year}</option>)
     return(
-      <form>
+      <form className="container-controlers">
         <fieldset>
           <div className="form-group">
             <label htmlFor="exampleSelect1">Artists</label>

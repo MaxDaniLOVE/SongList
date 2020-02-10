@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import List from '../List';
 import Controlers from '../Controlers';
 import getSongsService from '../../services/getSongsService';
+import './App.scss';
 
 
 export default class App extends Component {
@@ -82,7 +83,9 @@ export default class App extends Component {
     });
     return (
       <div className="container">
-        <List songList={visiableContent}/>
+        <List
+          songList={visiableContent}
+        />
         <Controlers
           artists={artists}
           genres={genres}
