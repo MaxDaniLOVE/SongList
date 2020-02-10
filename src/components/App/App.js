@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import List from '../List';
-import Controlers from '../Controlers';
+import Filters from '../Filters';
 import Footer from '../Footer';
 import getSongsService from '../../services/getSongsService';
 import filter from '../../utils/filter';
@@ -93,7 +93,7 @@ export default class App extends Component {
         <List
           songList={page}
         />
-        <Controlers
+        <Filters
           artists={artists}
           genres={genres}
           years={years}

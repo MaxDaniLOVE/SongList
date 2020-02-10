@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Controlers extends Component {
+export default class Filters extends Component {
   state = {
     artistFilter: [
       { artist: 'All', value: 'All' },
