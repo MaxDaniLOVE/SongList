@@ -4,20 +4,37 @@ export default class getSongsService{
       id: 1,
       artist: 'Slipknot',
       song: 'Wait and bleed',
-      genre: 'nu-metal',
-      year: 1999},
+      genre: 'Nu-metal',
+      year: 1999
+    },
     {
       id: 2,
       artist: 'Korn',
       song: 'Falling Away from Me',
-      genre: 'nu-metal',
-      year: 1999},
+      genre: 'Nu-metal',
+      year: 1999
+    },
     {
       id: 3,
       artist: 'Slipknot',
       song: '(SIC)',
-      genre: 'nu-metal',
-      year: 1999},
+      genre: 'Nu-metal',
+      year: 1999
+    },
+    {
+      id: 4,
+      artist: 'Pantera',
+      song: 'I’m Broken',
+      genre: 'Groove metal',
+      year: 1994
+    },
+    {
+      id: 5,
+      artist: 'Pantera',
+      song: 'Mouth for War',
+      genre: 'Groove metal',
+      year: 1992
+    },   
   ];
 
   getChart = () => {

@@ -53,10 +53,36 @@ export default class App extends Component {
   }
 
   render() {
-    const { songList, artists, genres, years } = this.state;
+    const {
+      songList,
+      artists,
+      genres,
+      years,
+      artistFilter,
+      genreFilter,
+      yearFilter
+    } = this.state;
+    const sortedByArtist = songList.filter(({artist}) => {
+      if (artistFilter === 'All') {
+        return true;
+      }
+      return artist === artistFilter;
+    });
+    const sortedByGenre = sortedByArtist.filter(({genre}) => {
+      if (genreFilter === 'All') {
+        return true;
+      }
+      return genre === genreFilter;
+    });
+    const visiableContent = sortedByGenre.filter(({year}) => {
+      if (yearFilter === 'All') {
+        return true;
+      }
+      return year.toString() === yearFilter;
+    });
     return (
       <div className="container">
-        <List songList={songList}/>
+        <List songList={visiableContent}/>
         <Controlers
           artists={artists}
           genres={genres}
