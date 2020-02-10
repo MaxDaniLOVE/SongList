@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import List from '../List';
 import Controlers from '../Controlers';
 import getSongsService from '../../services/getSongsService';
+import filter from '../../utils/filter';
 import './App.scss';
 
 
@@ -63,24 +64,7 @@ export default class App extends Component {
       genreFilter,
       yearFilter
     } = this.state;
-    const sortedByArtist = songList.filter(({artist}) => {
-      if (artistFilter === 'All') {
-        return true;
-      }
-      return artist === artistFilter;
-    });
-    const sortedByGenre = sortedByArtist.filter(({genre}) => {
-      if (genreFilter === 'All') {
-        return true;
-      }
-      return genre === genreFilter;
-    });
-    const visiableContent = sortedByGenre.filter(({year}) => {
-      if (yearFilter === 'All') {
-        return true;
-      }
-      return year.toString() === yearFilter;
-    });
+    const visiableContent = filter(songList, artistFilter, genreFilter, yearFilter);
     return (
       <div className="container">
         <List
