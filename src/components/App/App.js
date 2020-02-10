@@ -13,22 +13,43 @@ export default class App extends Component {
       artists: [],
       genres: [],
       years: [],
+      artistFilter: 'All',
+      genreFilter: 'All',
+      yearFilter: 'All'
     }
   }
 
   componentDidMount() {
     this.getSongsService.getChart()
       .then((songList) => {
-        const artists = new Set(songList.map(({artist}) => artist))
-        const genres = new Set(songList.map(({genre}) => genre))
-        const years = new Set(songList.map(({year}) => year))
+        const artists = new Set(songList.map(({artist}) => artist));
+        const genres = new Set(songList.map(({genre}) => genre));
+        const years = new Set(songList.map(({year}) => year));
         this.setState({
-          songList,
-          artists: [...artists],
-          genres: [...genres],
-          years: [...years],
-        })
+            songList,
+            artists: [...artists],
+            genres: [...genres],
+            years: [...years],
+          })
       });
+  }
+
+  onArtistFilterChange = (filter) => {
+    this.setState({
+      artistFilter: filter
+    })
+  }
+
+  onGenreFilterChange = (filter) => {
+    this.setState({
+      genreFilter: filter
+    })
+  }
+
+  onYearFilterChange = (filter) => {
+    this.setState({
+      yearFilter: filter
+    })
   }
 
   render() {
@@ -36,7 +57,14 @@ export default class App extends Component {
     return (
       <div className="container">
         <List songList={songList}/>
-        <Controlers artists={artists} genres={genres} years={years}/>
+        <Controlers
+          artists={artists}
+          genres={genres}
+          years={years}
+          onArtistFilterChange={this.onArtistFilterChange}
+          onGenreFilterChange={this.onGenreFilterChange}
+          onYearFilterChange={this.onYearFilterChange}
+        />
       </div>
       
     );
