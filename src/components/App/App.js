@@ -91,7 +91,13 @@ export default class App extends Component {
           onGenreFilterChange={this.onGenreFilterChange}
           onYearFilterChange={this.onYearFilterChange}
         />
-        <Footer displayedPages={pagesAmount} activePage={activePage} onDisplayedItemsChange={this.onDisplayedItemsChange}/>
+        <Footer
+          displayedPages={pagesAmount}
+          activePage={activePage}
+          displayedItems={displayedItems}
+          onDisplayedItemsChange={this.onDisplayedItemsChange}
+
+        />
       </div>
     );
   }
