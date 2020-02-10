@@ -19,7 +19,7 @@ export default class App extends Component {
   componentDidMount() {
     this.getSongsService.getChart()
       .then((songList) => {
-        const artists = new Set(songList.map(({singer}) => singer))
+        const artists = new Set(songList.map(({artist}) => artist))
         const genres = new Set(songList.map(({genre}) => genre))
         const years = new Set(songList.map(({year}) => year))
         this.setState({

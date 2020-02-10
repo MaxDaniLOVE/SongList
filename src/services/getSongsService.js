@@ -2,19 +2,19 @@ export default class getSongsService{
   data = [
     {
       id: 1,
-      singer: 'Slipknot',
+      artist: 'Slipknot',
       song: 'Wait and bleed',
       genre: 'nu-metal',
       year: 1999},
     {
       id: 2,
-      singer: 'Korn',
+      artist: 'Korn',
       song: 'Falling Away from Me',
       genre: 'nu-metal',
       year: 1999},
     {
       id: 3,
-      singer: 'Slipknot',
+      artist: 'Slipknot',
       song: '(SIC)',
       genre: 'nu-metal',
       year: 1999},

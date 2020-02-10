@@ -2,10 +2,10 @@ import React from 'react';
 import ListItem from '../ListItem';
 
 const List = ({songList}) => {
-  const songsArray = songList.map(({id, singer, song, genre, year}) => {
+  const songsArray = songList.map(({id, artist, song, genre, year}) => {
     return <ListItem
               key={id}
-              singer={singer}
+              artist={artist}
               song={song}
               genre={genre}
               year={year}
