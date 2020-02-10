@@ -21,7 +21,7 @@ export default class App extends Component {
       yearFilter: 'All',
       displayedItems: 10,
       activePage: 1,
-      selectedSort: null,
+      isSortSelected: false,
       sortedList: []
     }
   }
@@ -33,11 +33,11 @@ export default class App extends Component {
         const genres = new Set(songList.map(({genre}) => genre));
         const years = new Set(songList.map(({year}) => year));
         this.setState({
-            songList,
-            artists: [...artists],
-            genres: [...genres],
-            years: [...years],
-          })
+          songList,
+          artists: [...artists],
+          genres: [...genres],
+          years: [...years],
+        })
       });
   }
 
@@ -76,7 +76,7 @@ export default class App extends Component {
   }
 
   onArtistSort = () => {
-    this.setState(({songList}) => {
+    this.setState(({songList, isSortSelected}) => {
       const sortedList = [...songList].sort((a, b) => {
         if (a.artist > b.artist) return 1;
         if (a.artist < b.artist) return -1;
@@ -84,13 +84,13 @@ export default class App extends Component {
       });
       return {
         sortedList,
-        selectedSort: 'Artist'
+        isSortSelected: !isSortSelected
       }
     })
   }
 
   onGenreSort = () => {
-    this.setState(({songList}) => {
+    this.setState(({songList, isSortSelected}) => {
       const sortedList = [...songList].sort((a, b) => {
         if (a.genre > b.genre) return 1;
         if (a.genre < b.genre) return -1;
@@ -98,13 +98,13 @@ export default class App extends Component {
       });
       return {
         sortedList,
-        selectedSort: 'Genre'
+        isSortSelected: !isSortSelected
       }
     })
   }
 
   onSongSort = () => {
-    this.setState(({songList}) => {
+    this.setState(({songList, isSortSelected}) => {
       const sortedList = [...songList].sort((a, b) => {
         if (a.song > b.song) return 1;
         if (a.song < b.song) return -1;
@@ -112,13 +112,13 @@ export default class App extends Component {
       });
       return {
         sortedList,
-        selectedSort: 'Song'
+        isSortSelected: !isSortSelected
       }
     })
   }
 
   onYearSort = () => {
-    this.setState(({songList}) => {
+    this.setState(({songList, isSortSelected}) => {
       const sortedList = [...songList].sort((a, b) => {
         if (a.year > b.year) return 1;
         if (a.year < b.year) return -1;
@@ -126,7 +126,7 @@ export default class App extends Component {
       });
       return {
         sortedList,
-        selectedSort: 'Year'
+        isSortSelected: !isSortSelected
       }
     })
   }
@@ -142,10 +142,10 @@ export default class App extends Component {
       yearFilter,
       displayedItems,
       activePage,
-      selectedSort,
+      isSortSelected,
       sortedList
     } = this.state;
-    const list = !selectedSort ? songList : sortedList;
+    const list = !isSortSelected ? songList : sortedList;
     const visiableContent = filter(list, artistFilter, genreFilter, yearFilter);
     const pagesAmount = Math.ceil(visiableContent.length / displayedItems);
     const page = visiableContent.splice((activePage - 1) * displayedItems, displayedItems);
