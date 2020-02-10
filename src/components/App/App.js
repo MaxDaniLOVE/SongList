@@ -41,19 +41,22 @@ export default class App extends Component {
 
   onArtistFilterChange = (filter) => {
     this.setState({
-      artistFilter: filter
+      artistFilter: filter,
+      activePage: 1
     })
   }
 
   onGenreFilterChange = (filter) => {
     this.setState({
-      genreFilter: filter
+      genreFilter: filter,
+      activePage: 1
     })
   }
 
   onYearFilterChange = (filter) => {
     this.setState({
-      yearFilter: filter
+      yearFilter: filter,
+      activePage: 1
     })
   }
 
@@ -66,6 +69,7 @@ export default class App extends Component {
   onDisplayedItemsChange = (displayedItems) => {
     this.setState({
       displayedItems,
+      activePage: 1
     })
   }
 
@@ -82,8 +86,8 @@ export default class App extends Component {
       activePage
     } = this.state;
     const visiableContent = filter(songList, artistFilter, genreFilter, yearFilter);
+    const pagesAmount = Math.ceil(visiableContent.length / displayedItems);
     const page = visiableContent.splice((activePage - 1) * displayedItems, displayedItems);
-    const pagesAmount = Math.ceil(songList.length/displayedItems);
     return (
       <div className="container">
         <List
