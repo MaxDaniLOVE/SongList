@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import List from '../List';
 import Controlers from '../Controlers';
+import Footer from '../Footer';
 import getSongsService from '../../services/getSongsService';
 import filter from '../../utils/filter';
 import './App.scss';
@@ -17,7 +18,9 @@ export default class App extends Component {
       years: [],
       artistFilter: 'All',
       genreFilter: 'All',
-      yearFilter: 'All'
+      yearFilter: 'All',
+      displayedItems: 10,
+      activePage: 1
     }
   }
 
@@ -54,6 +57,12 @@ export default class App extends Component {
     })
   }
 
+  onDisplayedItemsChange = (amount) => {
+    this.setState({
+      activePage: amount
+    })
+  }
+
   render() {
     const {
       songList,
@@ -62,13 +71,17 @@ export default class App extends Component {
       years,
       artistFilter,
       genreFilter,
-      yearFilter
+      yearFilter,
+      displayedItems,
+      activePage
     } = this.state;
     const visiableContent = filter(songList, artistFilter, genreFilter, yearFilter);
+    const page = visiableContent.splice((activePage - 1) * displayedItems, displayedItems);
+    const pagesAmount = Math.ceil(songList.length/displayedItems);
     return (
       <div className="container">
         <List
-          songList={visiableContent}
+          songList={page}
         />
         <Controlers
           artists={artists}
@@ -78,8 +91,8 @@ export default class App extends Component {
           onGenreFilterChange={this.onGenreFilterChange}
           onYearFilterChange={this.onYearFilterChange}
         />
+        <Footer displayedPages={pagesAmount} activePage={activePage} onDisplayedItemsChange={this.onDisplayedItemsChange}/>
       </div>
-      
     );
   }
 }
