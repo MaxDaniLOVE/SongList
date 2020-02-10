@@ -20,7 +20,9 @@ export default class App extends Component {
       genreFilter: 'All',
       yearFilter: 'All',
       displayedItems: 10,
-      activePage: 1
+      activePage: 1,
+      selectedSort: null,
+      sortedList: []
     }
   }
 
@@ -73,6 +75,62 @@ export default class App extends Component {
     })
   }
 
+  onArtistSort = () => {
+    this.setState(({songList}) => {
+      const sortedList = [...songList].sort((a, b) => {
+        if (a.artist > b.artist) return 1;
+        if (a.artist < b.artist) return -1;
+        return 0;
+      });
+      return {
+        sortedList,
+        selectedSort: 'Artist'
+      }
+    })
+  }
+
+  onGenreSort = () => {
+    this.setState(({songList}) => {
+      const sortedList = [...songList].sort((a, b) => {
+        if (a.genre > b.genre) return 1;
+        if (a.genre < b.genre) return -1;
+        return 0;
+      });
+      return {
+        sortedList,
+        selectedSort: 'Genre'
+      }
+    })
+  }
+
+  onSongSort = () => {
+    this.setState(({songList}) => {
+      const sortedList = [...songList].sort((a, b) => {
+        if (a.song > b.song) return 1;
+        if (a.song < b.song) return -1;
+        return 0;
+      });
+      return {
+        sortedList,
+        selectedSort: 'Song'
+      }
+    })
+  }
+
+  onYearSort = () => {
+    this.setState(({songList}) => {
+      const sortedList = [...songList].sort((a, b) => {
+        if (a.year > b.year) return 1;
+        if (a.year < b.year) return -1;
+        return 0;
+      });
+      return {
+        sortedList,
+        selectedSort: 'Year'
+      }
+    })
+  }
+
   render() {
     const {
       songList,
@@ -83,15 +141,22 @@ export default class App extends Component {
       genreFilter,
       yearFilter,
       displayedItems,
-      activePage
+      activePage,
+      selectedSort,
+      sortedList
     } = this.state;
-    const visiableContent = filter(songList, artistFilter, genreFilter, yearFilter);
+    const list = !selectedSort ? songList : sortedList;
+    const visiableContent = filter(list, artistFilter, genreFilter, yearFilter);
     const pagesAmount = Math.ceil(visiableContent.length / displayedItems);
     const page = visiableContent.splice((activePage - 1) * displayedItems, displayedItems);
     return (
       <div className="container">
         <List
           songList={page}
+          onArtistSort={this.onArtistSort}
+          onSongSort={this.onSongSort}
+          onGenreSort={this.onGenreSort}
+          onYearSort={this.onYearSort}
         />
         <Filters
           artists={artists}

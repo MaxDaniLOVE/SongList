@@ -1,7 +1,7 @@
 import React from 'react';
 import ListItem from '../ListItem';
 
-const List = ({songList}) => {
+const List = ({songList, onArtistSort, onSongSort, onGenreSort, onYearSort}) => {
   const songsArray = songList.map(({id, artist, song, genre, year}) => {
     return <ListItem
               key={id}
@@ -15,10 +15,10 @@ const List = ({songList}) => {
     <table className="table table-hover container-list">
       <thead>
         <tr>
-          <th scope="col">Singer</th>
-          <th scope="col">Song</th>
-          <th scope="col">Genre</th>
-          <th scope="col">Year</th>
+          <th scope="col" onClick={() => onArtistSort()}>Singer</th>
+          <th scope="col" onClick={() => onSongSort()}>Song</th>
+          <th scope="col" onClick={() => onGenreSort()}>Genre</th>
+          <th scope="col" onClick={() => onYearSort()}>Year</th>
         </tr>
       </thead>
       <tbody>
