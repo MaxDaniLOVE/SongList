@@ -5,5 +5,9 @@
     transition: background-color .2s ease-in;
     background-color: #0f7864;
     color: #fff;
+    cursor: pointer;
+  }
+  &_active{
+    background-color: #0f7864;
   }
 }
