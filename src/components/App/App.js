@@ -2,28 +2,27 @@ import React, { Component } from 'react';
 import List from '../List';
 import Filters from '../Filters';
 import Footer from '../Footer';
+import Preloader from '../Preloader';
 import getSongsService from '../../services/getSongsService';
 import filter from '../../utils/filter';
 import './App.scss';
 
 
 export default class App extends Component {
-  constructor(props){
-    super(props);
-    this.getSongsService = new getSongsService();
-    this.state = {
-      songList: [],
-      artists: [],
-      genres: [],
-      years: [],
-      artistFilter: 'All',
-      genreFilter: 'All',
-      yearFilter: 'All',
-      displayedItems: 10,
-      activePage: 1,
-      selectedSort: null,
-      sortedList: []
-    }
+  getSongsService = new getSongsService();
+  state = {
+    songList: [],
+    artists: [],
+    genres: [],
+    years: [],
+    artistFilter: 'All',
+    genreFilter: 'All',
+    yearFilter: 'All',
+    displayedItems: 10,
+    activePage: 1,
+    selectedSort: null,
+    sortedList: [],
+    isLoaded: false
   }
 
   componentDidMount() {
@@ -37,6 +36,7 @@ export default class App extends Component {
           artists: [...artists],
           genres: [...genres],
           years: [...years],
+          isLoaded: true
         })
       });
   }
@@ -167,12 +167,20 @@ export default class App extends Component {
       displayedItems,
       activePage,
       selectedSort,
-      sortedList
+      sortedList,
+      isLoaded
     } = this.state;
     const list = !selectedSort ? songList : sortedList;
     const visiableContent = filter(list, artistFilter, genreFilter, yearFilter);
     const pagesAmount = Math.ceil(visiableContent.length / displayedItems);
     const page = visiableContent.splice((activePage - 1) * displayedItems, displayedItems);
+    if (!isLoaded) {
+      return (
+        <div className="container">
+          <Preloader />
+        </div>
+      )
+    }
     return (
       <div className="container">
         <List
