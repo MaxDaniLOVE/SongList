@@ -9,7 +9,7 @@ const FilterItem = ({label, filterFunc, selectList}) => {
           filterFunc(e.target.value)
         }}
         className="form-control"
-        id="exampleSelect1"
+        key={label}
       >
         {selectList}
       </select>
