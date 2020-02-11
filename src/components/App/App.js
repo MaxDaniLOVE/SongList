@@ -75,12 +75,17 @@ export default class App extends Component {
     })
   }
 
-  onArtistSort = () => {
+  onArtistSort = (index) => {
     this.setState(({songList, selectedSort}) => {
-      const newSort = selectedSort === 'Artist' ? null : 'Artist';
+      let newSort;
+      if (index === 1) {
+        newSort = selectedSort === 'ArtistUp' ? null : 'ArtistUp';
+      } else {
+        newSort = selectedSort === 'ArtistDown' ? null : 'ArtistDown';
+      }
       const sortedList = [...songList].sort((a, b) => {
-        if (a.artist > b.artist) return 1;
-        if (a.artist < b.artist) return -1;
+        if (a.artist > b.artist) return 1 * index;
+        if (a.artist < b.artist) return -1 * index;
         return 0;
       });
       return {
@@ -90,12 +95,17 @@ export default class App extends Component {
     })
   }
 
-  onGenreSort = () => {
+  onGenreSort = (index) => {
     this.setState(({songList, selectedSort}) => {
-      const newSort = selectedSort === 'Genre' ? null : 'Genre';
+      let newSort;
+      if (index === 1) {
+        newSort = selectedSort === 'GenreUp' ? null : 'GenreUp';
+      } else {
+        newSort = selectedSort === 'GenreDown' ? null : 'GenreDown';
+      }
       const sortedList = [...songList].sort((a, b) => {
-        if (a.genre > b.genre) return 1;
-        if (a.genre < b.genre) return -1;
+        if (a.genre > b.genre) return 1 * index;
+        if (a.genre < b.genre) return -1 * index;
         return 0;
       });
       return {
@@ -105,12 +115,17 @@ export default class App extends Component {
     })
   }
 
-  onSongSort = () => {
+  onSongSort = (index) => {
     this.setState(({songList, selectedSort}) => {
-      const newSort = selectedSort === 'Song' ? null : 'Song';
+      let newSort;
+      if (index === 1) {
+        newSort = selectedSort === 'SongUp' ? null : 'SongUp';
+      } else {
+        newSort = selectedSort === 'SongDown' ? null : 'SongDown';
+      }
       const sortedList = [...songList].sort((a, b) => {
-        if (a.song > b.song) return 1;
-        if (a.song < b.song) return -1;
+        if (a.song > b.song) return 1 * index;
+        if (a.song < b.song) return -1 * index;
         return 0;
       });
       return {
@@ -120,12 +135,17 @@ export default class App extends Component {
     })
   }
 
-  onYearSort = () => {
+  onYearSort = (index) => {
     this.setState(({songList, selectedSort}) => {
-      const newSort = selectedSort === 'Year' ? null : 'Year';
+      let newSort;
+      if (index === 1) {
+        newSort = selectedSort === 'YearUp' ? null : 'YearUp';
+      } else {
+        newSort = selectedSort === 'YearDown' ? null : 'YearDown';
+      }
       const sortedList = [...songList].sort((a, b) => {
-        if (a.year > b.year) return 1;
-        if (a.year < b.year) return -1;
+        if (a.year > b.year) return 1 * index;
+        if (a.year < b.year) return -1 * index;
         return 0;
       });
       return {
