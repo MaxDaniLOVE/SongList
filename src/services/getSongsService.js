@@ -178,13 +178,9 @@ export default class getSongsService{
   ];
 
   getChart = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       setTimeout(() => {
-        if (Math.random() > 0.95) {
-          reject(new Error('Something bad happened'));
-        } else {
-          resolve(this.data);
-        }
+        resolve(this.data);
       }, 700);
     });
   }
