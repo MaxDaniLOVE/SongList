@@ -178,10 +178,15 @@ export default class getSongsService{
   ];
 
   getChart = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(this.data);
-      }, 700);
-    });
+    return fetch('http://localhost:3000/')
+      .then((res) => res.json()) // try to load data from node.js server
+      .catch((err) => { // load static data if an error
+        console.error('static data will be loaded...', err);
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(this.data);
+          }, 700);
+        });
+      })
   }
-} 
+}
