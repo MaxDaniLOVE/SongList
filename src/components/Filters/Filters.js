@@ -14,23 +14,22 @@ export default class Filters extends Component {
     ]
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.years.length !== this.props.years.length) {
-      const {artists, genres, years} = this.props;
-      const artistsList = artists.map((artist) => artist)
-      const genresList = genres.map((genre) => genre)
-      const yearsList = years.map((year) => year)
-      this.setState(({artistFilter, genreFilter, yearsFilter}) => {
-        const newArtistFilter = artistsList.map((el) => {return {artist: el, value: el}})
-        const newGenresList = genresList.map((el) => {return {genre: el, value: el}})
-        const newYearsFilter = yearsList.map((el) => {return {year: el, value: el}})
-        return{
-          artistFilter: [...artistFilter, ...newArtistFilter],
-          genreFilter: [...genreFilter, ...newGenresList],
-          yearsFilter: [...yearsFilter, ...newYearsFilter]
-        }
-      })
-    }
+  componentDidMount() {
+    const {artists, genres, years} = this.props;
+    const artistsList = artists.map((artist) => artist)
+    const genresList = genres.map((genre) => genre)
+    const yearsList = years.map((year) => year)
+    this.setState(({artistFilter, genreFilter, yearsFilter}) => {
+      
+      const newArtistFilter = artistsList.map((el) => {return {artist: el, value: el}})
+      const newGenresList = genresList.map((el) => {return {genre: el, value: el}})
+      const newYearsFilter = yearsList.map((el) => {return {year: el, value: el}})
+      return{
+        artistFilter: [...artistFilter, ...newArtistFilter],
+        genreFilter: [...genreFilter, ...newGenresList],
+        yearsFilter: [...yearsFilter, ...newYearsFilter]
+      }
+    })
   }
 
   render() {
