@@ -5,10 +5,15 @@ import './List.scss'
 const List = ({songList, clickHandlers, selectedSort}) => {
   const tableHeaderLabels = ['Artist','Song','Genre','Year'];
   const tableHeader = tableHeaderLabels.map((element, idx) => {
-    // const sortUpRegExp = /(Up)$/m;
-    // const sortDownRegExp = /(Down)$/m;
-    // const iconUpClassName = sortUpRegExp.test(selectedSort) ? 'active' : '';
-    // const iconDownClassName = sortDownRegExp.test(selectedSort) ? 'active' : '';
+    const tableHeaderRegExp = new RegExp(element)
+    const sortUpRegExp = /(Up)$/m;
+    const sortDownRegExp = /(Down)$/m;
+    const iconUpClassName = sortUpRegExp.test(selectedSort) && tableHeaderRegExp.test(selectedSort)
+      ? 'active'
+      : '';
+    const iconDownClassName = sortDownRegExp.test(selectedSort) && tableHeaderRegExp.test(selectedSort)
+      ? 'active'
+      : '';
     return (
       <th
         className="table-header"
@@ -19,14 +24,13 @@ const List = ({songList, clickHandlers, selectedSort}) => {
         <span className="table-header_btns-span">
           <i
             onClick={() => {
-              console.log(this);
               clickHandlers[idx](1)
             }}
-            className={"fa fa-chevron-up "/* + iconUpClassName*/}
+            className={"fa fa-chevron-up "+ iconUpClassName}
           />
           <i
             onClick={() => clickHandlers[idx](-1)}
-            className={"fa fa-chevron-down "/* + iconDownClassName*/}
+            className={"fa fa-chevron-down "+ iconDownClassName}
           />
         </span>
       </th>
