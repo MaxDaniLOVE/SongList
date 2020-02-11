@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FilterItem from '../FilterItem';
 
 export default class Filters extends Component {
   state = {
@@ -41,42 +42,21 @@ export default class Filters extends Component {
     return(
       <form className="container-controlers">
         <fieldset>
-          <div className="form-group">
-            <label htmlFor="exampleSelect1">Artists</label>
-            <select
-              onChange={(e) =>{
-                onArtistFilterChange(e.target.value)
-              }}
-              className="form-control"
-              id="exampleSelect1"
-            >
-              {artistsList}
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleSelect1">Genres</label>
-            <select
-              onChange={(e) =>{
-                onGenreFilterChange(e.target.value)
-              }}
-              className="form-control"
-              id="exampleSelect1"
-            >
-              {genresList}
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleSelect1">Years</label>
-            <select
-              onChange={(e) =>{
-                onYearFilterChange(e.target.value)
-              }}
-              className="form-control"
-              id="exampleSelect1"
-            >
-              {yearsList}
-            </select>
-          </div>
+          <FilterItem
+            label={'Artists'}
+            filterFunc={onArtistFilterChange}
+            selectList={artistsList}
+          />
+          <FilterItem
+            label={'Genres'}
+            filterFunc={onGenreFilterChange}
+            selectList={genresList}
+          />
+          <FilterItem
+            label={'Years'}
+            filterFunc={onYearFilterChange}
+            selectList={yearsList}
+          />
         </fieldset>
       </form>
     )
