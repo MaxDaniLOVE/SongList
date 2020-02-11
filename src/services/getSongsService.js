@@ -67,21 +67,21 @@ export default class getSongsService{
       id: 10,
       artist: 'Soundgarden',
       song: 'Black Hole Sun',
-      genre: 'Grange',
+      genre: 'Grunge',
       year: 1994
     },
     {
       id: 11,
       artist: 'Nirvana',
       song: 'Smells Like Teen Spirit',
-      genre: 'Grange',
+      genre: 'Grunge',
       year: 1991
     }, 
     {
       id: 12,
       artist: 'Alice In Chains',
       song: 'Rooster',
-      genre: 'Grange',
+      genre: 'Grunge',
       year: 1992
     },
     {
